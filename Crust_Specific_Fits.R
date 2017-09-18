@@ -24,7 +24,7 @@ all$Depth = as.numeric(all$Depth) # in meters
 all$cellsPer = as.numeric(all$cellsPer) # in cell cm-3
 
 # load indices
-myIndices = as.matrix(read.csv("1000_indices_for_bootstrap.csv",header=FALSE))[1:2,]
+myIndices = as.matrix(read.csv("1000_indices_for_bootstrap.csv",header=FALSE))
 bootstraps = nrow(myIndices)
 depthsToIterate = gridCells$Z122_Med_HF_km*1000 # in meters
 
@@ -102,8 +102,6 @@ for (n in 1:nrow(index)){
   else{
         output = linearModel(trainSet$crustScheme2,gridCells$crustScheme2,trainSet,testSet)
         newEstimate[n,]=output$estimate
-        print("GLM Estimate and Error")
-        print(output$estimate)
         gridValues[,n]=output$grid
         parameters[n,]=output$params
       }
